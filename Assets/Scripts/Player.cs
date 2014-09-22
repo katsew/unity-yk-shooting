@@ -7,18 +7,17 @@ public class Player : MonoBehaviour {
 	public float speed = 5;
 	
 	// Prefab of player bullet
-	public GameObject bullet;
+	public GameObject PlayerBullet;
 
 	// Shoot or not
 	private bool shouldShoot = true;
 
 	// Get Animator
-	protected Animator animator;
+	private Animator animator;
 
 	// Use this for initialization
 	void Start () {
 		animator = GetComponent<Animator> ();
-
 	}
 	
 	// Update is called once per frame
@@ -43,8 +42,7 @@ public class Player : MonoBehaviour {
 		Vector3 playerPos = new Vector3(this.transform.position.x + 0.35f, this.transform.position.y + 0.8f, 0);
 		
 		// Instantiate player bullet
-		Instantiate(bullet, playerPos, this.transform.rotation);
-
+		Instantiate(PlayerBullet, playerPos, this.transform.rotation);
 	}
 
 	void OnGUI () {
@@ -52,16 +50,12 @@ public class Player : MonoBehaviour {
 
 		if (e.isKey && e.keyCode == KeyCode.J) {
 
-			if (animator.GetBool("shouldAnimate") == true) {
-				animator.SetBool("shouldAnimate", false);
-			}
-
 			if (shouldShoot == false) {
 				shouldShoot = true;
 				return;
 			} else {
 
-				animator.SetBool("shouldAnimate", true);
+				animator.SetTrigger("triggerAnim");
 				shouldShoot = false;
 				Invoke("initBullet", 0.45f);
 

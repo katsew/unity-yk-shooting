@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour {
 	// bullet speed
 	public int speed = 10;
 
+	protected GameObject bullet;
+
 	// Use this for initialization
 	void Start () {
 		rigidbody2D.velocity = transform.up.normalized * speed;
@@ -13,6 +15,6 @@ public class Bullet : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+
 	}
 }
